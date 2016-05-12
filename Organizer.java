@@ -3,6 +3,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -48,19 +49,31 @@ public class Organizer extends Application
     {
         //File Menu
         Menu fileMenu = new Menu("File");
-<<<<<<< HEAD
         
         //Ranking Menu
         Menu rankingMenu = new Menu("Ranking");
         MenuItem topTenItem = new MenuItem("Top Ten");
+        topTenItem.setOnAction( e -> {
+            topTen();
+        });
         MenuItem bracketItem = new MenuItem("Bracket");
         MenuItem hierarchyItem = new MenuItem("Hierarchy");
-=======
-        Menu rankingMenu = new Menu("Ranking");
->>>>>>> master
     }
     
-    //
+    private topTen()
+    {
+        GridPane gp = new GridPane();
+        Label lb1 = new Label("#1");
+        Label lb2 = new Label("#2");
+        Label lb3 = new Label("#3");
+        Label lb4 = new Label("#4");
+        Label lb5 = new Label("#5");
+        Label lb6 = new Label("#6");
+        Label lb7 = new Label("#7");
+        Label lb8 = new Label("#8");
+        Label lb9 = new Label("#9");
+        Label lb10 = new Label("#10");
+    }
     
     //Main method
     public static void main(String[] args)
