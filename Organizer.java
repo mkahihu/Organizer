@@ -48,12 +48,16 @@ public class Organizer extends Application
     {
         //File Menu
         Menu fileMenu = new Menu("File");
+<<<<<<< HEAD
         
         //Ranking Menu
         Menu rankingMenu = new Menu("Ranking");
         MenuItem topTenItem = new MenuItem("Top Ten");
         MenuItem bracketItem = new MenuItem("Bracket");
         MenuItem hierarchyItem = new MenuItem("Hierarchy");
+=======
+        Menu rankingMenu = new Menu("Ranking");
+>>>>>>> master
     }
     
     //
