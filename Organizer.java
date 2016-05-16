@@ -32,6 +32,7 @@ public class Organizer extends Application
     List<String> top4;
     List<String> top2;
     List<String> top1;
+    BorderPane bp;
     GridPane gp;
     MenuBar mb;
     
@@ -45,7 +46,8 @@ public class Organizer extends Application
         top4 = new ArrayList<String>(); //List used to contain users top 4 in bracket
         top2 = new ArrayList<String>(); //List used to contain users top 2 in bracket
         top1 = new ArrayList<String>(); //List used to contain users winner in bracket
-        gp = new GridPane(); //Gridpane
+        bp = new BorderPane(); //BorderPane
+        gp = new GridPane(); //GridPane
         mb = new MenuBar(); //MenuBar
     }
     
@@ -56,8 +58,12 @@ public class Organizer extends Application
         createMenus();
         createLabels();
         
-        Scene s = new Scene(gp, 400, 400, Color.WHITESMOKE);
- 
+        bp.setTop(mb);
+        bp.setCenter(gp);
+        bp.getChildren().addAll(mb, gp);
+        
+        //Set Scene
+        Scene s = new Scene(bp, 400, 400, Color.WHITESMOKE);
         
         //Setting the stage
         primary.setScene(s);
@@ -75,8 +81,11 @@ public class Organizer extends Application
         Menu bracketMenu = new Menu("Bracket");
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
-            topTen();
+            
         });
+        bracketMenu.getItems().addAll(addItem);
+        
+        mb.getMenus().addAll(fileMenu, bracketMenu);
     }
     
     private void createLabels()
@@ -224,7 +233,7 @@ public class Organizer extends Application
         lb10.setTextFill(Color.BLACK);
         
         gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10);
-        return gp;
+        
     }
     
     //Main method
