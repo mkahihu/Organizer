@@ -1,3 +1,8 @@
+/* Name: Cristopher Alvarado and Miller Kahihu
+ * Date: 05/24/16
+ * CS 406 Final Project - Organizer File
+ */ 
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -9,6 +14,9 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.Group;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import java.util.List;
 import java.util.ArrayList;
@@ -34,10 +42,12 @@ public class Organizer extends Application
     public void start(Stage primary)
     {
         createMenus();
+        topTen();
         
         bp.setTop(mb);
         
-        Scene s = new Scene(bp, 400, 400);
+        Scene s = new Scene(bp, 400, 400, Color.WHITESMOKE);
+ 
         
         //Setting the stage
         primary.setScene(s);
