@@ -1,25 +1,25 @@
-public class Person implements Comparable<Person> {
-    private final String rank;
-    private final int points;
+public class RankingList implements Comparable<RankingList> {
+    private final String ranking;
+    private final int score;
 
-    public Person(String rank, int points) {
-        this.rank = rank;
-        this.points = points;
+    public RankingList(String ranking, int score) {
+        this.ranking = ranking;
+        this.score = score;
     }
 
-    public String rank() {
-        return rank;
+    public String ranking() {
+        return ranking;
     }
 
-    public int points() {
-        return points;
+    public int score() {
+        return score;
     }
 
     public boolean equals(Object o) {
-        if (!(o instanceof Person))
+        if (!(o instanceof RankingList))
             return false;
-        Person person = (Person) o;
-        return person.rank.equals(rank) && person.points == points;
+        RankingList rankingList = (RankingList) o;
+        return rankingList.ranking.equals(ranking) && rankingList.score == score;
     }
 
     // public int hashCode() {
@@ -27,10 +27,10 @@ public class Person implements Comparable<Person> {
     // }
 
     public String toString(){
-        return "Rank: " + rank +", points = " + points ;
+        return "Rank: " + ranking +", points = " + score ;
     }
 
-    public int compareTo(Person person) {
-        return points > person.points ? 1 : points < person.points ? -1 : 0;
+    public int compareTo(RankingList rankingList) {
+        return score > rankingList.score ? 1 : score < rankingList.score ? -1 : 0;
     }
 }

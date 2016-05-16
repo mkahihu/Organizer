@@ -1,3 +1,8 @@
+/* Name: Cristopher Alvarado and Miller Kahihu
+ * Date: 05/24/16
+ * CS 406 Final Project - Ranking List Method
+ */ 
+
 public class RankingList implements Comparable<RankingList> {
     private final String ranking;
     private final int score;
