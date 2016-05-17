@@ -56,7 +56,7 @@ public class Organizer extends Application
         createMenus();
         createLabels();
         
-        Scene s = new Scene(gp, 400, 400, Color.WHITESMOKE);
+        Scene s = new Scene(gp, 600, 450, Color.WHITE);
  
         
         //Setting the stage
@@ -75,13 +75,11 @@ public class Organizer extends Application
         Menu bracketMenu = new Menu("Bracket");
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
-            topTen();
         });
     }
     
     private void createLabels()
     {
-        GridPane gp = new GridPane();
         Label lb1 = new Label("#1");
         Label lb2 = new Label("#2");
         Label lb3 = new Label("#3");
@@ -222,9 +220,137 @@ public class Organizer extends Application
         lb8.setTextFill(Color.BLACK);
         lb9.setTextFill(Color.BLACK);
         lb10.setTextFill(Color.BLACK);
+        lb11.setTextFill(Color.BLACK);
+        lb12.setTextFill(Color.BLACK);
+        lb13.setTextFill(Color.BLACK);
+        lb14.setTextFill(Color.BLACK);
+        lb15.setTextFill(Color.BLACK);
+        lb16.setTextFill(Color.BLACK);
+        lb17.setTextFill(Color.BLACK);
+        lb18.setTextFill(Color.BLACK);
+        lb19.setTextFill(Color.BLACK);
+        lb20.setTextFill(Color.BLACK);
+        lb21.setTextFill(Color.BLACK);
+        lb22.setTextFill(Color.BLACK);
+        lb23.setTextFill(Color.BLACK);
+        lb24.setTextFill(Color.BLACK);
+        lb25.setTextFill(Color.BLACK);
+        lb26.setTextFill(Color.BLACK);
+        lb27.setTextFill(Color.BLACK);
+        lb28.setTextFill(Color.BLACK);
+        lb29.setTextFill(Color.BLACK);
+        lb30.setTextFill(Color.BLACK);
+        lb31.setTextFill(Color.BLACK);
+        lb32.setTextFill(Color.BLACK);
+        lb33.setTextFill(Color.BLACK);
+        lb34.setTextFill(Color.BLACK);
+        lb35.setTextFill(Color.BLACK);
+        lb36.setTextFill(Color.BLACK);
+        lb37.setTextFill(Color.BLACK);
+        lb38.setTextFill(Color.BLACK);
+        lb39.setTextFill(Color.BLACK);
+        lb40.setTextFill(Color.BLACK);
+        lb41.setTextFill(Color.BLACK);
+        lb42.setTextFill(Color.BLACK);
+        lb43.setTextFill(Color.BLACK);
+        lb44.setTextFill(Color.BLACK);
+        lb45.setTextFill(Color.BLACK);
+        lb46.setTextFill(Color.BLACK);
+        lb47.setTextFill(Color.BLACK);
+        lb48.setTextFill(Color.BLACK);
+        lb49.setTextFill(Color.BLACK);
+        lb50.setTextFill(Color.BLACK);
+        lb51.setTextFill(Color.BLACK);
+        lb52.setTextFill(Color.BLACK);
+        lb53.setTextFill(Color.BLACK);
+        lb54.setTextFill(Color.BLACK);
+        lb55.setTextFill(Color.BLACK);
+        lb56.setTextFill(Color.BLACK);
+        lb57.setTextFill(Color.BLACK);
+        lb58.setTextFill(Color.BLACK);
+        lb59.setTextFill(Color.BLACK);
+        lb60.setTextFill(Color.BLACK);
+        lb61.setTextFill(Color.BLACK);
+        lb62.setTextFill(Color.BLACK);
+        lb63.setTextFill(Color.BLACK);
+        lb64.setTextFill(Color.BLACK);
+        lb65.setTextFill(Color.BLACK);
+        lb66.setTextFill(Color.BLACK);
+        lb67.setTextFill(Color.BLACK);
+        lb68.setTextFill(Color.BLACK);
+        lb69.setTextFill(Color.BLACK);
+        lb70.setTextFill(Color.BLACK);
+        lb71.setTextFill(Color.BLACK);
+        lb72.setTextFill(Color.BLACK);
+        lb73.setTextFill(Color.BLACK);
+        lb74.setTextFill(Color.BLACK);
+        lb75.setTextFill(Color.BLACK);
+        lb76.setTextFill(Color.BLACK);
+        lb77.setTextFill(Color.BLACK);
+        lb78.setTextFill(Color.BLACK);
+        lb79.setTextFill(Color.BLACK);
+        lb80.setTextFill(Color.BLACK);
+        lb81.setTextFill(Color.BLACK);
+        lb82.setTextFill(Color.BLACK);
+        lb83.setTextFill(Color.BLACK);
+        lb84.setTextFill(Color.BLACK);
+        lb85.setTextFill(Color.BLACK);
+        lb86.setTextFill(Color.BLACK);
+        lb87.setTextFill(Color.BLACK);
+        lb88.setTextFill(Color.BLACK);
+        lb89.setTextFill(Color.BLACK);
+        lb90.setTextFill(Color.BLACK);
+        lb91.setTextFill(Color.BLACK);
+        lb92.setTextFill(Color.BLACK);
+        lb93.setTextFill(Color.BLACK);
+        lb94.setTextFill(Color.BLACK);
+        lb95.setTextFill(Color.BLACK);
+        lb96.setTextFill(Color.BLACK);
+        lb97.setTextFill(Color.BLACK);
+        lb98.setTextFill(Color.BLACK);
+        lb99.setTextFill(Color.BLACK);
+        lb100.setTextFill(Color.BLACK);
+        lb101.setTextFill(Color.BLACK);
+        lb102.setTextFill(Color.BLACK);
+        lb103.setTextFill(Color.BLACK);
+        lb104.setTextFill(Color.BLACK);
+        lb105.setTextFill(Color.BLACK);
+        lb106.setTextFill(Color.BLACK);
+        lb107.setTextFill(Color.BLACK);
+        lb108.setTextFill(Color.BLACK);
+        lb109.setTextFill(Color.BLACK);
+        lb110.setTextFill(Color.BLACK);
+        lb111.setTextFill(Color.BLACK);
+        lb112.setTextFill(Color.BLACK);
+        lb113.setTextFill(Color.BLACK);
+        lb114.setTextFill(Color.BLACK);
+        lb115.setTextFill(Color.BLACK);
+        lb116.setTextFill(Color.BLACK);
+        lb117.setTextFill(Color.BLACK);
+        lb118.setTextFill(Color.BLACK);
+        lb119.setTextFill(Color.BLACK);
+        lb120.setTextFill(Color.BLACK);
+        lb121.setTextFill(Color.BLACK);
+        lb122.setTextFill(Color.BLACK);
+        lb123.setTextFill(Color.BLACK);
+        lb124.setTextFill(Color.BLACK);
+        lb125.setTextFill(Color.BLACK);
+        lb126.setTextFill(Color.BLACK);
+        lb127.setTextFill(Color.BLACK);
         
-        gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10);
-        return gp;
+        gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10,
+                                lb11, lb12, lb13, lb14, lb15, lb16, lb17, lb18, lb19, lb20,
+                                lb21, lb22, lb23, lb24, lb25, lb26, lb27, lb28, lb29, lb30,
+                                lb31, lb32, lb33, lb34, lb35, lb36, lb37, lb38, lb39, lb40,
+                                lb41, lb42, lb43, lb44, lb45, lb46, lb47, lb48, lb49, lb50,
+                                lb51, lb52, lb53, lb54, lb55, lb56, lb57, lb58, lb59, lb60,
+                                lb61, lb62, lb63, lb64, lb65, lb66, lb67, lb68, lb69, lb70,
+                                lb71, lb72, lb73, lb74, lb75, lb76, lb77, lb78, lb79, lb80,
+                                lb81, lb82, lb83, lb84, lb85, lb86, lb87, lb88, lb89, lb90,
+                                lb91, lb92, lb93, lb94, lb95, lb96, lb97, lb98, lb99, lb100,
+                                lb101, lb102, lb103, lb104, lb105, lb106, lb107, lb108, lb109, lb110,
+                                lb111, lb112, lb113, lb114, lb115, lb116, lb117, lb118, lb119, lb120,
+                                lb121, lb122, lb123, lb124, lb125, lb126, lb127);
     }
     
     //Main method
