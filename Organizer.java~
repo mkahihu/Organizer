@@ -32,7 +32,20 @@ public class Organizer extends Application
     List<String> top4;
     List<String> top2;
     List<String> top1;
-    GridPane gp;
+    Label[][] leftBrack64;
+    Label[][] leftBrack32;
+    Label[][] leftBrack16;
+    Label[][] leftBrack8;
+    Label[][] leftBrack4;
+    Label[][] leftBrack2;
+    Label[][] rightBrack2;
+    Label[][] rightBrack4;
+    Label[][] rightBrack8;
+    Label[][] rightBrack16;
+    Label[][] rightBrack32;
+    ArrayList<Label> rightBrack64;
+
+    BorderPane bp;
     MenuBar mb;
     
     //Initialize Variables
@@ -45,7 +58,21 @@ public class Organizer extends Application
         top4 = new ArrayList<String>(); //List used to contain users top 4 in bracket
         top2 = new ArrayList<String>(); //List used to contain users top 2 in bracket
         top1 = new ArrayList<String>(); //List used to contain users winner in bracket
-        gp = new GridPane(); //Gridpane
+        
+        leftBrack64 = new Label[][];
+        leftBrack32 = new Label[][];
+        leftBrack16 = new Label[][];
+        leftBrack8 = new Label[][];
+        leftBrack4 = new Label[][];
+        leftBrack2 = new Label[][];
+        rightBrack2 = new Label[][];
+        rightBrack4 = new Label[][];
+        rightBrack8 = new Label[][];
+        rightBrack16 = new Label[][];
+        rightBrack32 = new Label[][];
+        rightBrack64 = new Label[][];
+            
+        bp = new BorderPane(); //Gridpane
         mb = new MenuBar(); //MenuBar
     }
     
@@ -53,15 +80,16 @@ public class Organizer extends Application
     @Override
     public void start(Stage primary)
     {
+        bp.setTop(mb);
         createMenus();
         createLabels();
         
-        Scene s = new Scene(gp, 600, 450, Color.WHITE);
+        Scene s = new Scene(bp, 600, 450, Color.WHITE);
  
         
         //Setting the stage
         primary.setScene(s);
-        primary.setTitle("Bracket");
+        primary.setTitle("Tournament Bracket");
         primary.show();
     }
     
@@ -76,10 +104,23 @@ public class Organizer extends Application
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
         });
+        
+        mb.getMenus().addAll(fileMenu, bracketMenu, addItem);
     }
     
     private void createLabels()
     {
+        GridPane gp = new GridPane();
+        gp.setHgap(5);
+        gp.setVgap(5);
+        
+        Label[][] label = new Label[127]
+        for (int i = 0; i < 127; i++)
+         {
+            labels[i]=new JLabel("message" + i);
+        }
+        return labels;
+            
         Label lb1 = new Label("#1");
         Label lb2 = new Label("#2");
         Label lb3 = new Label("#3");
@@ -207,7 +248,6 @@ public class Organizer extends Application
         Label lb125 = new Label("#125");
         Label lb126 = new Label("#126");
         Label lb127 = new Label("#127");
-        
         
         //Colored Text
         lb1.setTextFill(Color.BLACK);
@@ -338,6 +378,136 @@ public class Organizer extends Application
         lb126.setTextFill(Color.BLACK);
         lb127.setTextFill(Color.BLACK);
         
+         for(int k = 0; k < 127; k++)
+        {
+             //Left Top 64
+            //for(int k = 0; k < 32; k++)
+            //{
+             gp.setConstraints(lb1, 0, 0);
+             gp.setConstraints(lb2, 1, 0);
+             gp.setConstraints(lb3, 2, 0);
+             gp.setConstraints(lb4, 3, 0);
+             gp.setConstraints(lb5, 4, 0);
+             gp.setConstraints(lb6, 5, 0);
+             gp.setConstraints(lb7, 6, 0);
+             gp.setConstraints(lb8, 7, 0);
+             gp.setConstraints(lb9, 8, 0);
+             gp.setConstraints(lb10, 9, 0);
+             gp.setConstraints(lb11, 10, 0);
+             gp.setConstraints(lb12, 11, 0);
+             gp.setConstraints(lb13, 12, 0);
+             gp.setConstraints(lb14, 13, 0);
+             gp.setConstraints(lb15, 14, 0);
+             gp.setConstraints(lb16, 15, 0);
+             gp.setConstraints(lb17, 16, 0);
+             gp.setConstraints(lb18, 17, 0);
+             gp.setConstraints(lb19, 18, 0);
+             gp.setConstraints(lb20, 19, 0);
+             gp.setConstraints(lb21, 20, 0);
+             gp.setConstraints(lb22, 21, 0);
+             gp.setConstraints(lb23, 22, 0);
+             gp.setConstraints(lb24, 23, 0);
+             gp.setConstraints(lb25, 24, 0);
+             gp.setConstraints(lb26, 25, 0);
+             gp.setConstraints(lb27, 26, 0);
+             gp.setConstraints(lb28, 27, 0);
+             gp.setConstraints(lb29, 28, 0);
+             gp.setConstraints(lb30, 29, 0);
+             gp.setConstraints(lb31, 30, 0);
+             gp.setConstraints(lb32, 32, 0);
+               
+            //}
+            
+            //Left Top 32
+            //for(int k = 0; k < 16; k++)
+            //{
+             gp.setConstraints(lb17, 0, 1);
+             gp.setConstraints(lb18, 1, 1);
+             gp.setConstraints(lb19, 2, 1);
+             gp.setConstraints(lb20, 3, 1);
+             gp.setConstraints(lb21, 4, 1);
+               gp.setConstraints(lb22, 5, 1);
+               gp.setConstraints(lb23, 6, 1);
+               gp.setConstraints(lb24, 7, 1);
+               gp.setConstraints(lb25, 8, 1);
+               gp.setConstraints(lb26, 9, 1);
+               gp.setConstraints(lb27, 10, 1);
+               gp.setConstraints(lb28, 11, 1);
+               gp.setConstraints(lb29, 12, 1);
+               gp.setConstraints(lb30, 13, 1);
+               gp.setConstraints(lb31, 14, 1);
+               gp.setConstraints(lb32, 15, 1);
+               gp.setConstraints(lb16, 16, 1);
+            }
+            
+         for(int i=0; i<4; i++) 
+         {
+            //Left Top 16
+            for(int k = 0; k < 8; k++)
+            {
+   
+                gp.setConstraints(label, k, 2);
+            }
+            
+            //Left Top 8
+            for(int k = 0; k < 4; k++)
+            {
+                 gp.setConstraints(label, k, 3);
+            }
+            
+            //Left Top 4
+            for(int k = 0; k < 2; k++)
+            {
+                gp.setConstraints(label, k, 4);
+            }
+            
+            //Left Top 2
+            for(int k = 0; k < 1; k++)
+            {
+                gp.setConstraints(label, k, 5);
+            }
+            
+            //Number One
+            gp.setConstraints(lb64, k, 6);
+            
+            //Right Top 2
+            for(int k = 0; k < 1; k++)
+            {
+                 gp.setConstraints(label, k, 7);
+            
+            
+            //Right Top 4
+            for(int k = 0; k < 2; k++)
+            {
+                gp.setConstraints(label, k, 8);
+            }
+            
+            //Right Top 8
+            for(int k = 0; k < 4; k++)
+            {
+                gp.setConstraints(label, k, 9);
+            }
+            
+            //Right Top 16
+            for(int k = 0; k < 8; k++)
+            {
+                gp.setConstraints(label, k, 10);
+            }
+            
+            //Right Top 32
+            for(int k = 0; k < 16; k++)
+            {
+                gp.setConstraints(label, k, 11); 
+            }
+            
+            //Right Top 64
+            for(int k = 0; k < 32; k++)
+            {
+                gp.setConstraints(label, k, 12);
+            }   
+            
+        }
+        
         gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10,
                                 lb11, lb12, lb13, lb14, lb15, lb16, lb17, lb18, lb19, lb20,
                                 lb21, lb22, lb23, lb24, lb25, lb26, lb27, lb28, lb29, lb30,
@@ -351,6 +521,8 @@ public class Organizer extends Application
                                 lb101, lb102, lb103, lb104, lb105, lb106, lb107, lb108, lb109, lb110,
                                 lb111, lb112, lb113, lb114, lb115, lb116, lb117, lb118, lb119, lb120,
                                 lb121, lb122, lb123, lb124, lb125, lb126, lb127);
+      
+         }
     }
     
     //Main method
