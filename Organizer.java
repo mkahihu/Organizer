@@ -18,10 +18,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.control.TextInputDialog;
+import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
+
 
 public class Organizer extends Application
 {
@@ -52,14 +55,14 @@ public class Organizer extends Application
     //Initialize Variables
     public void init()
     {
-        top64 = new ArrayList<String>(); //List used to contain users top 64 in bracket
-        top32 = new ArrayList<String>(); //List used to contain users top 32 in bracket
-        top16 = new ArrayList<String>(); //List used to contain users top 16 in bracket
-        top8 = new ArrayList<String>(); //List used to contain users top 8 in bracket
-        top4 = new ArrayList<String>(); //List used to contain users top 4 in bracket
-        top2 = new ArrayList<String>(); //List used to contain users top 2 in bracket
-        top1 = new ArrayList<String>(); //List used to contain users winner in bracket
-        
+        top64 = new ArrayList<String>(64); //List used to contain users top 64 in bracket
+        top32 = new ArrayList<String>(32); //List used to contain users top 32 in bracket
+        top16 = new ArrayList<String>(16); //List used to contain users top 16 in bracket
+        top8 = new ArrayList<String>(8); //List used to contain users top 8 in bracket
+        top4 = new ArrayList<String>(4); //List used to contain users top 4 in bracket
+        top2 = new ArrayList<String>(2); //List used to contain users top 2 in bracket
+        top1 = new ArrayList<String>(1); //List used to contain users winner in bracket
+        /*
         leftBrack64 = new Label[][];
         leftBrack32 = new Label[][];
         leftBrack16 = new Label[][];
@@ -72,7 +75,7 @@ public class Organizer extends Application
         rightBrack16 = new Label[][];
         rightBrack32 = new Label[][];
         rightBrack64 = new Label[][];
-            
+            */
         bp = new BorderPane(); //BorderPane
         //gp = new GridPane(); //Gridpane
         mb = new MenuBar(); //MenuBar
@@ -83,6 +86,7 @@ public class Organizer extends Application
     public void start(Stage primary)
     {
         bp.setTop(mb);
+        fillLists();
         createMenus();
         createLabels();
         
@@ -95,6 +99,39 @@ public class Organizer extends Application
         primary.show();
     }
     
+    //List code
+    private void fillLists()
+    {
+        for(int i = 0; i < 64; i++)
+        {
+            top64.add(i,"empty");
+        }
+        for(int i = 0; i < 32; i++)
+        {
+            top32.add(i,"empty");
+        }
+        for(int i = 0; i < 16; i++)
+        {
+            top16.add(i,"empty");
+        }
+        for(int i = 0; i < 8; i++)
+        {
+            top8.add(i,"empty");
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            top4.add(i,"empty");
+        }
+        for(int i = 0; i < 2; i++)
+        {
+            top2.add(i,"empty");
+        }
+        for(int i = 0; i < 1; i++)
+        {
+            top1.add(i,"empty");
+        }
+    }
+    
     //MenuBar code
     private void createMenus()
     {
@@ -105,9 +142,16 @@ public class Organizer extends Application
         Menu bracketMenu = new Menu("Bracket");
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
+            /*TextInputDialog dialogNumber = new TextInputDialog();
+            dialogNumber.setTitle("Text Input Dialog");
+            dialogNumber.setHeaderText("Look, a Text Input Dialog");
+            dialogNumber.setContentText("Please enter your name:");*/
+            String input = JOptionPane.showInputDialog(this  ,"Enter in some text:");
+            
         });
+        bracketMenu.getItems().addAll(addItem);
         
-        mb.getMenus().addAll(fileMenu, bracketMenu, addItem);
+        mb.getMenus().addAll(fileMenu, bracketMenu);
     }
     
     private void createLabels()
@@ -115,14 +159,15 @@ public class Organizer extends Application
         GridPane gp = new GridPane();
         gp.setHgap(5);
         gp.setVgap(5);
-        
-        Label[][] label = new Label[127]
+        /*
+        Label[][] label = new Label[127];
         for (int i = 0; i < 127; i++)
          {
             labels[i]=new JLabel("message" + i);
         }
         return labels;
-            
+         */ 
+        //First Level Brackets
         Label lb1 = new Label("#1");
         Label lb2 = new Label("#2");
         Label lb3 = new Label("#3");
@@ -187,6 +232,8 @@ public class Organizer extends Application
         Label lb62 = new Label("#62");
         Label lb63 = new Label("#63");
         Label lb64 = new Label("#64");
+        
+        //Second level brackets
         Label lb65 = new Label("#65");
         Label lb66 = new Label("#66");
         Label lb67 = new Label("#67");
@@ -219,6 +266,8 @@ public class Organizer extends Application
         Label lb94 = new Label("#94");
         Label lb95 = new Label("#95");
         Label lb96 = new Label("#96");
+        
+        //Third Level Brackets
         Label lb97 = new Label("#97");
         Label lb98 = new Label("#98");
         Label lb99 = new Label("#99");
@@ -235,6 +284,8 @@ public class Organizer extends Application
         Label lb110 = new Label("#110");
         Label lb111 = new Label("#111");
         Label lb112 = new Label("#112");
+        
+        //Fourth Level Brackets
         Label lb113 = new Label("#113");
         Label lb114 = new Label("#114");
         Label lb115 = new Label("#115");
@@ -243,12 +294,18 @@ public class Organizer extends Application
         Label lb118 = new Label("#118");
         Label lb119 = new Label("#119");
         Label lb120 = new Label("#120");
+        
+        //Fifth Level Brackets
         Label lb121 = new Label("#121");
         Label lb122 = new Label("#122");
         Label lb123 = new Label("#123");
         Label lb124 = new Label("#124");
+        
+        //Sixth Level Brackets
         Label lb125 = new Label("#125");
         Label lb126 = new Label("#126");
+        
+        //Seventh Level Brackets
         Label lb127 = new Label("#127");
         
         //Colored Text
@@ -441,7 +498,7 @@ public class Organizer extends Application
                gp.setConstraints(lb32, 15, 1);
                gp.setConstraints(lb16, 16, 1);
             }
-            
+          /*  
          for(int i=0; i<4; i++) 
          {
             //Left Top 16
@@ -507,8 +564,8 @@ public class Organizer extends Application
             {
                 gp.setConstraints(label, k, 12);
             }   
-            
-        }
+        */    
+        
         
         gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10,
                                 lb11, lb12, lb13, lb14, lb15, lb16, lb17, lb18, lb19, lb20,
@@ -524,7 +581,6 @@ public class Organizer extends Application
                                 lb111, lb112, lb113, lb114, lb115, lb116, lb117, lb118, lb119, lb120,
                                 lb121, lb122, lb123, lb124, lb125, lb126, lb127);
       
-         }
     }
     
     //Main method

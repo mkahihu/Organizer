@@ -46,6 +46,7 @@ public class Organizer extends Application
     ArrayList<Label> rightBrack64;
 
     BorderPane bp;
+    //GridPane gp;
     MenuBar mb;
     
     //Initialize Variables
@@ -72,7 +73,8 @@ public class Organizer extends Application
         rightBrack32 = new Label[][];
         rightBrack64 = new Label[][];
             
-        bp = new BorderPane(); //Gridpane
+        bp = new BorderPane(); //BorderPane
+        //gp = new GridPane(); //Gridpane
         mb = new MenuBar(); //MenuBar
     }
     
