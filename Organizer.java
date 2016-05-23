@@ -120,6 +120,9 @@ public class Organizer extends Application
                 }
                 k = k * 2;
             }
+        }
+        
+        bp.setCenter(gp);
         
         Scene s = new Scene(bp, 900, 750, Color.WHITE);
  
@@ -184,7 +187,7 @@ public class Organizer extends Application
         
         mb.getMenus().addAll(fileMenu, bracketMenu);
     }
-    
+    /*
     private void createLabels()
     {
         GridPane gp = new GridPane();
@@ -205,7 +208,7 @@ public class Organizer extends Application
             }
         }
          
-        /*//First Level Brackets
+        /First Level Brackets
         Label lb1 = new Label("#1");
         Label lb2 = new Label("#2");
         Label lb3 = new Label("#3");
@@ -602,7 +605,7 @@ public class Organizer extends Application
             {
                 gp.setConstraints(label, k, 12);
             }   
-        *  
+        
         
         
         gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10,
@@ -617,9 +620,9 @@ public class Organizer extends Application
                                 lb91, lb92, lb93, lb94, lb95, lb96, lb97, lb98, lb99, lb100,
                                 lb101, lb102, lb103, lb104, lb105, lb106, lb107, lb108, lb109, lb110,
                                 lb111, lb112, lb113, lb114, lb115, lb116, lb117, lb118, lb119, lb120,
-                                lb121, lb122, lb123, lb124, lb125, lb126, lb127);*/
+                                lb121, lb122, lb123, lb124, lb125, lb126, lb127);
       
-    }
+    }*/
     
     //Main method
     public static void main(String[] args)
