@@ -46,30 +46,34 @@ public class DemoOrganize extends Application
         gp.setHgap(25);
         gp.setVgap(5);
         
-        Label[][] lb = new Label[7][127];
-        int k = 32;
+        Label[][] lb = new Label[65][14];
+        int k = 64;
         
-        for (int c = 1; c < 13; c++)
+        for (int c = 1; c < 14; c++)
         {
-            if (c <= 6)
+            if (c <= 7)
             {
                 for (int r = 1; r < k+1; r++)
                 {
-                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
-                    lb[c][r].setTextFill(Color.BLACK);
-                    gp.setConstraints(lb[c][r], c, r);
-                    gp.getChildren().add(lb[c][r]);
+                    lb[r][c] = new Label("#" + "C" + c + "R" + r);
+                    lb[r][c].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[r][c], c, r);
+                    gp.getChildren().add(lb[r][c]);
                 }
-                k = k/2;  
+                k = k/2;
+            }
+            if(k == 1)
+            {
+                k = 2;
             }
             else
             {
                 for (int r = 1; r < k+1; r++)
                 {
-                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
-                    lb[c][r].setTextFill(Color.BLACK);
-                    gp.setConstraints(lb[c][r], c, r);
-                    gp.getChildren().add(lb[c][r]);
+                    lb[r][c] = new Label("#" + "C" + c + "R" + r);
+                    lb[r][c].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[r][c], c, r);
+                    gp.getChildren().add(lb[r][c]);
                 }
                 k = k * 2;
             }

@@ -19,37 +19,71 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
+import javafx.scene.control.Alert;
 
 
-public class Organizer extends Application
+public class DemoOrganize extends Application
 {   
+    //int i;
+    //int j;
+    //int k;
+    //Label[][] lb;
+    //GridPane gp;
+    
+    public void init()
+    {
+        //int i = 0;
+        //int j = 0;
+        //int k = 64;
+        //Label[][] lb = new Label[7][127];
+        //GridPane gp = new GridPane();
+    }
+    
     @Override
     public void start(Stage primary)
     {
-        GridPane gp = new GridPane();
-        gp.setHgap(5);
+        GridPane gp = new GridPane(); 
+        gp.setHgap(25);
         gp.setVgap(5);
         
         Label[][] lb = new Label[7][127];
-        for (int i = 0; i < 7; i++)
+        int k = 32;
+        
+        for (int c = 1; c < 13; c++)
         {
-            int j = 0;
-            while(j < 64)
+            if (c <= 6)
             {
-                lb[i][j] = new Label("#" + i + j);
-                lb[i][j].setTextFill(Color.BLACK);
-                gp.setConstraints(lb[i][j], i, j);
-                gp.getChildren().add(lb[i][j]);
-                j++;
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
+                    lb[c][r].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[c][r], c, r);
+                    gp.getChildren().add(lb[c][r]);
+                }
+                k = k/2;  
+            }
+            else
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
+                    lb[c][r].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[c][r], c, r);
+                    gp.getChildren().add(lb[c][r]);
+                }
+                k = k * 2;
             }
         }
         
-        Scene s = new Scene(gp, 600, 450, Color.WHITE);
+        
+        
+        
+        Scene s = new Scene(gp, 900, 750, Color.WHITE);
  
         
         //Setting the stage
         primary.setScene(s);
         primary.setTitle("Tournament Bracket");
-        primary.show();
+        primary.show();   
     }
 }
