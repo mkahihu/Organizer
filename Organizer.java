@@ -35,18 +35,18 @@ public class Organizer extends Application
     List<String> top4;
     List<String> top2;
     List<String> top1;
-    Label[][] leftBrack64;
-    Label[][] leftBrack32;
-    Label[][] leftBrack16;
-    Label[][] leftBrack8;
-    Label[][] leftBrack4;
-    Label[][] leftBrack2;
-    Label[][] rightBrack2;
-    Label[][] rightBrack4;
-    Label[][] rightBrack8;
-    Label[][] rightBrack16;
-    Label[][] rightBrack32;
-    ArrayList<Label> rightBrack64;
+   // Label[][] leftBrack64;
+    //Label[][] leftBrack32;
+    //Label[][] leftBrack16;
+    //Label[][] leftBrack8;
+    //Label[][] leftBrack4;
+    //Label[][] leftBrack2;
+    //Label[][] rightBrack2;
+    //Label[][] rightBrack4;
+    //Label[][] rightBrack8;
+    //Label[][] rightBrack16;
+    //Label[][] rightBrack32;
+    //Label[][] rightBrack64;
 
     BorderPane bp;
     //GridPane gp;
@@ -88,9 +88,40 @@ public class Organizer extends Application
         bp.setTop(mb);
         fillLists();
         createMenus();
-        createLabels();
         
-        Scene s = new Scene(bp, 600, 450, Color.WHITE);
+        GridPane gp = new GridPane(); 
+        gp.setHgap(25);
+        gp.setVgap(5);
+        
+        Label[][] lb = new Label[7][127];
+        int k = 32;
+        
+        for (int c = 1; c < 13; c++)
+        {
+            if (c <= 6)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
+                    lb[c][r].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[c][r], c, r);
+                    gp.getChildren().add(lb[c][r]);
+                }
+                k = k/2;  
+            }
+            else
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[c][r] = new Label("#" + "C" + c + "R" + r);
+                    lb[c][r].setTextFill(Color.BLACK);
+                    gp.setConstraints(lb[c][r], c, r);
+                    gp.getChildren().add(lb[c][r]);
+                }
+                k = k * 2;
+            }
+        
+        Scene s = new Scene(bp, 900, 750, Color.WHITE);
  
         
         //Setting the stage
@@ -159,15 +190,22 @@ public class Organizer extends Application
         GridPane gp = new GridPane();
         gp.setHgap(5);
         gp.setVgap(5);
-        /*
-        Label[][] label = new Label[127];
-        for (int i = 0; i < 127; i++)
+        
+        Label[][] lb = new Label[7][127];
+        for (int i = 0; i < 7; i++)
          {
-            labels[i]=new JLabel("message" + i);
+            int j = 0;
+            while(j < 64)
+            {
+                lb[i][j] = new Label("#" + i + j);
+                lb[i][j].setTextFill(Color.BLACK);
+                gp.setConstraints(lb[i][j], i, j);
+                gp.getChildren().add(lb[i][j]);
+                j++;
+            }
         }
-        return labels;
-         */ 
-        //First Level Brackets
+         
+        /*//First Level Brackets
         Label lb1 = new Label("#1");
         Label lb2 = new Label("#2");
         Label lb3 = new Label("#3");
@@ -564,7 +602,7 @@ public class Organizer extends Application
             {
                 gp.setConstraints(label, k, 12);
             }   
-        */    
+        *  
         
         
         gp.getChildren().addAll(lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10,
@@ -579,7 +617,7 @@ public class Organizer extends Application
                                 lb91, lb92, lb93, lb94, lb95, lb96, lb97, lb98, lb99, lb100,
                                 lb101, lb102, lb103, lb104, lb105, lb106, lb107, lb108, lb109, lb110,
                                 lb111, lb112, lb113, lb114, lb115, lb116, lb117, lb118, lb119, lb120,
-                                lb121, lb122, lb123, lb124, lb125, lb126, lb127);
+                                lb121, lb122, lb123, lb124, lb125, lb126, lb127);*/
       
     }
     

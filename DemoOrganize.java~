@@ -1,0 +1,55 @@
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.VBox;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.Group;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.control.TextInputDialog;
+import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Collections;
+
+
+public class Organizer extends Application
+{   
+    @Override
+    public void start(Stage primary)
+    {
+        GridPane gp = new GridPane();
+        gp.setHgap(5);
+        gp.setVgap(5);
+        
+        Label[][] lb = new Label[7][127];
+        for (int i = 0; i < 7; i++)
+        {
+            int j = 0;
+            while(j < 64)
+            {
+                lb[i][j] = new Label("#" + i + j);
+                lb[i][j].setTextFill(Color.BLACK);
+                gp.setConstraints(lb[i][j], i, j);
+                gp.getChildren().add(lb[i][j]);
+                j++;
+            }
+        }
+        
+        Scene s = new Scene(gp, 600, 450, Color.WHITE);
+ 
+        
+        //Setting the stage
+        primary.setScene(s);
+        primary.setTitle("Tournament Bracket");
+        primary.show();
+    }
+}
