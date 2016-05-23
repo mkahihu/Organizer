@@ -46,7 +46,7 @@ public class DemoOrganize extends Application
         gp.setHgap(25);
         gp.setVgap(5);
         
-        Label[][] lb = new Label[65][14];
+        Label[][] lb = new Label[66][15];
         int k = 64;
         
         for (int c = 1; c < 14; c++)
