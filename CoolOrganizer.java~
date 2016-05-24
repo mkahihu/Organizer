@@ -23,17 +23,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.paint.Color;
-import javafx.scene.effect.DropShadow;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-public class Organizer extends Application
+public class CoolOrganizer extends Application
 {
+    BorderPane bp;
     MenuBar mb;
     List<List<String>> matchups;
     
@@ -41,6 +40,7 @@ public class Organizer extends Application
     public void init()
     {
         
+        bp = new BorderPane(); //BorderPane
         mb = new MenuBar(); //MenuBar
         matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
@@ -66,23 +66,17 @@ public class Organizer extends Application
         //Creates a GridPane and sets Horizontal/Vertical spacing.
         GridPane gp = new GridPane(); 
         gp.setHgap(37);
-        gp.setVgap(5);
+        gp.setVgap(1);
         gp.setPadding(new Insets(5, 5, 5, 5));
-        gp.setStyle("-fx-background-color: #4897D8;");
         //gp.setFill(Color.RED);
         
-        ScrollPane sp = new ScrollPane(gp);
-        sp.setFitToHeight(true);
-        
-        BorderPane bp = new BorderPane(sp);
-        bp.setPadding(new Insets(5));
-        
-        DropShadow dpS = new DropShadow();
-        dpS.setOffsetX(2.0);
-        dpS.setOffsetY(0.5);
+        //ScrollPane sp = new ScrollPane(gp);
+        //gp.add(sp, , 1);
+        //sp.setFitToHeight(true);
+        //sp.setFitToWidth(true);
 
         //Create a Double Array of Labels (in form of a Tournament Bracket)
-        Label[][] lb = new Label[65][14];
+        Label[][] lb = new Label[129][14];
         int k = 64;
         int i = 1;
         int count = 0;
@@ -91,39 +85,36 @@ public class Organizer extends Application
         {
             if (c < 7)
             {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
-                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n" 
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
-                    gp.setConstraints(lb[r][c], c, (2 * (i * r)));
-                    gp.getChildren().add(lb[r][c]);  
-                }
-                i++;
-                k = k / 2;
-                count += (k / 2);
+                    for (int r = 1; r < k+1; r++)
+                    {
+                        if (r % 2 == 1)
+                        {
+                            lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                            lb[r][c].setTextFill(Color.BLACK);
+                            lb[r][c].setFont(new Font("Garamond", 9));
+                            lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
+                            gp.setConstraints(lb[r][c], c, (2 * (i * r)));
+                            gp.getChildren().add(lb[r][c]);  
+                        }
+                        else if (r % 2 == 0)
+                        {
+                           lb[r][c] = new Label();
+                           gp.setConstraints(lb[r][c], c, (2 * (i * r)));
+                           gp.getChildren().add(lb[r][c]);   
+                        }
+                    }
+                    i++;
+                    k = k / 2;
+                    count += (k / 2);
             }
             else if(c == 7)
             {
                 for (int r = 1; r < k+1; r++)
                 {
                     lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
+                    lb[r][c].setTextFill(Color.BLACK);
+                    lb[r][c].setFont(new Font("Garamond", 9));
                     lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;\n"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
                     gp.setConstraints(lb[r][c], c, (2 * (i + 1) * r));
                     gp.getChildren().add(lb[r][c]);  
                 }
@@ -138,19 +129,21 @@ public class Organizer extends Application
             {
                 for (int r = 1; r < k+1; r++)
                 {
-                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
-                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
-                    gp.setConstraints(lb[r][c], c, (2 * (i - 1) * r));
-                    gp.getChildren().add(lb[r][c]);
-                    
+                    if (r % 2 == 1)
+                    {
+                        lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                        lb[r][c].setTextFill(Color.BLACK);
+                        lb[r][c].setFont(new Font("Garamond", 9));
+                        lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
+                        gp.setConstraints(lb[r][c], c, (2 * (i * r)));
+                        gp.getChildren().add(lb[r][c]);  
+                    }
+                    else if (c % 2 == 0)
+                    {
+                        lb[r][c] = new Label();
+                        gp.setConstraints(lb[r][c], c, (2 * (i * r)));
+                        gp.getChildren().add(lb[r][c]);   
+                    }
                 }
                 i--;
                 count -= (k / 2);
@@ -158,7 +151,7 @@ public class Organizer extends Application
             }
         }
             bp.setTop(mb);
-            bp.setCenter(sp);
+            bp.setCenter(gp);
             
             Group root = new Group();
             Scene s = new Scene(bp, 1440, 900, Color.LIGHTCORAL);

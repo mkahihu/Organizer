@@ -1,0 +1,70 @@
+ public void start(Stage primary)
+    {
+        createMenus();
+        
+        GridPane gp = new GridPane(); 
+        gp.setHgap(36);
+        gp.setVgap(1);
+        
+        Label[][] lb = new Label[65][14];
+        int k = 64;
+        
+        for (int c = 1; c < 14; c++)
+        {
+            if (c <= 7)
+            {
+                if (c == 1)
+                {
+                    for (int r = 1; r < k+1; r++)
+                    {
+                        lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                        lb[r][c].setTextFill(Color.BLACK);
+                        lb[r][c].setFont(new Font("Garamond", 9));
+                        gp.setConstraints(lb[r][c], c, r);
+                        gp.getChildren().add(lb[r][c]);  
+                    }
+                    k = k / 2;
+                }
+                else
+                {
+                    for (int r = 1; r < k+1; r++)
+                    {
+                        lb[r + k/2][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                        lb[r + k/2][c].setTextFill(Color.BLACK);
+                        lb[r + k/2][c].setFont(new Font("Garamond", 9));
+                        gp.setConstraints(lb[r + k/2][c], c, r);
+                        gp.getChildren().add(lb[r + k/2][c]);
+                    }
+                    k = k / 2;
+                }
+            }
+            if(k == 0)
+            {
+                k = 2;
+            }
+            else if( c > 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r + k/2][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                    lb[r + k/2][c].setTextFill(Color.BLACK);
+                    lb[r + k/2][c].setFont(new Font("Garamond", 9));
+                    gp.setConstraints(lb[r + k/2][c], c, r);
+                    gp.getChildren().add(lb[r + k/2][c]);
+                }
+                k = k * 2;
+            }
+        }
+            
+            bp.setTop(mb);
+            bp.setCenter(gp);
+            
+            Scene s = new Scene(bp, 1440, 900, Color.WHITE);
+            
+            
+            //Setting the stage
+            primary.setScene(s);
+            primary.setTitle("Tournament Bracket");
+            primary.show();
+    
+    }
