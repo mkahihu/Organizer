@@ -26,6 +26,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.paint.Color;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,13 +36,17 @@ import java.util.Collections;
 public class Organizer extends Application
 {
     MenuBar mb;
+    GridPane gp;
     List<List<String>> matchups;
+    Label[][] lb;
     
     //Initialize Variables
     public void init()
     {
         
         mb = new MenuBar(); //MenuBar
+        gp = new GridPane(); //GridPane
+        lb = new Label[65][14];
         matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
    /* public void makeMatchUp(String p1, String p2)
@@ -60,17 +65,18 @@ public class Organizer extends Application
     @Override
     public void start(Stage primary)
     {
-        //Creates Menus
-        createMenus();
-        
         //Creates a GridPane and sets Horizontal/Vertical spacing.
-        GridPane gp = new GridPane(); 
         gp.setHgap(37);
         gp.setVgap(5);
         gp.setPadding(new Insets(5, 5, 5, 5));
         gp.setStyle("-fx-background-color: #4897D8;");
-        //gp.setFill(Color.RED);
+        //Creates Menus
+        createMenus();
         
+        //Create Labels & Label Code
+        createLabels();
+        labelCode();
+    
         ScrollPane sp = new ScrollPane(gp);
         sp.setFitToHeight(true);
         
@@ -81,7 +87,8 @@ public class Organizer extends Application
         dpS.setOffsetX(2.0);
         dpS.setOffsetY(0.5);
 
-        //Create a Double Array of Labels (in form of a Tournament Bracket)
+        
+        /*
         Label[][] lb = new Label[65][14];
         int k = 64;
         int i = 1;
@@ -157,6 +164,7 @@ public class Organizer extends Application
                 k = k * 2;
             }
         }
+        */
             bp.setTop(mb);
             bp.setCenter(sp);
             
@@ -190,6 +198,128 @@ public class Organizer extends Application
         mb.getMenus().addAll(fileMenu, bracketMenu);
     }
     
+    private void createLabels()
+    {
+        //Create a Double Array of Labels (in form of a Tournament Bracket)
+        
+        int k = 64;
+        int i = 1;
+        int count = 0;
+        
+        for (int c = 1; c < 14; c++)
+        {
+            if (c < 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                    lb[r][c].setTextFill(Color.web("#2F3131"));
+                    lb[r][c].setFont(new Font("Garamond", 8));
+                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
+                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n" 
+                                          + "-fx-border-style: solid;\n"
+                                          + "-fx-border-color: #BCBABE;"
+                                          + "-fx-border-width: 2;\n"
+                                          + "-fx-border-insets: 0.5;\n");
+                    //lb[r][c].setEffect(dpS);
+                    gp.setConstraints(lb[r][c], c, (2 * (i * r)));
+                    gp.getChildren().add(lb[r][c]);  
+                }
+                i++;
+                k = k / 2;
+                count += (k / 2);
+            }
+            else if(c == 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                    lb[r][c].setTextFill(Color.web("#2F3131"));
+                    lb[r][c].setFont(new Font("Garamond", 8));
+                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
+                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
+                                          + "-fx-border-style: solid;\n"
+                                          + "-fx-border-color: #BCBABE;\n"
+                                          + "-fx-border-width: 2;\n"
+                                          + "-fx-border-insets: 0.5;\n");
+                    //lb[r][c].setEffect(dpS);
+                    gp.setConstraints(lb[r][c], c, (2 * (i + 1) * r));
+                    gp.getChildren().add(lb[r][c]);  
+                }
+                i = c;
+                k = k / 2;
+                if(k == 0)
+                {
+                    k = 2;
+                }
+            }
+            else if(c > 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
+                    lb[r][c].setTextFill(Color.web("#2F3131"));
+                    lb[r][c].setFont(new Font("Garamond", 8));
+                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
+                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
+                                          + "-fx-border-style: solid;\n"
+                                          + "-fx-border-color: #BCBABE;"
+                                          + "-fx-border-width: 2;\n"
+                                          + "-fx-border-insets: 0.5;\n");
+                    //lb[r][c].setEffect(dpS);
+                    gp.setConstraints(lb[r][c], c, (2 * (i - 1) * r));
+                    gp.getChildren().add(lb[r][c]);
+                    
+                }
+                i--;
+                count -= (k / 2);
+                k = k * 2;
+            }
+        }
+    }
+    
+    //Label Actions
+    private void labelCode()
+    {
+        int k = 64;
+        
+        for (int c = 1; c < 14; c++)
+        {
+            if (c <= 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r][c].setOnMouseClicked( e -> {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setContentText("This is an important message!");
+                        alert.showAndWait();
+          
+                    });
+                }
+                k = k/2;
+            }
+            if(k == 0)
+            {
+                k = 2;
+            }
+            else if( c > 7)
+            {
+                for (int r = 1; r < k+1; r++)
+                {
+                    lb[r][c].setOnMouseClicked( e -> {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setContentText("This is an important message!");
+                        alert.showAndWait();
+          
+                    });
+                }
+                k = k * 2;
+            }
+        }
+        
+        
+                    
+    }
     //Main method
     public static void main(String[] args)
     {
