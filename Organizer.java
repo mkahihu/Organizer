@@ -39,6 +39,13 @@ public class Organizer extends Application
     GridPane gp;
     List<List<String>> matchups;
     Label[][] lb;
+    List<String> top64;
+    List<String> top32;
+    List<String> top16;
+    List<String> top8;
+    List<String> top4;
+    List<String> top2;
+    String winner;
     
     //Initialize Variables
     public void init()
@@ -46,7 +53,7 @@ public class Organizer extends Application
         
         mb = new MenuBar(); //MenuBar
         gp = new GridPane(); //GridPane
-        lb = new Label[65][14];
+        lb = new Label[33][12];
         matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
    /* public void makeMatchUp(String p1, String p2)
@@ -124,13 +131,13 @@ public class Organizer extends Application
     {
         //Create a Double Array of Labels (in form of a Tournament Bracket)
         
-        int k = 64;
+        int k = 32;
         int i = 1;
         int count = 0;
         
-        for (int c = 1; c < 14; c++)
+        for (int c = 1; c < 12; c++)
         {
-            if (c < 7)
+            if (c < 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -151,7 +158,7 @@ public class Organizer extends Application
                 k = k / 2;
                 count += (k / 2);
             }
-            else if(c == 7)
+            else if(c == 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -175,7 +182,7 @@ public class Organizer extends Application
                     k = 2;
                 }
             }
-            else if(c > 7)
+            else if(c > 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -203,11 +210,11 @@ public class Organizer extends Application
     //Label Actions
     private void labelCode()
     {
-        int k = 64;
+        int k = 32;
         
-        for (int c = 1; c < 14; c++)
+        for (int c = 1; c < 12; c++)
         {
-            if (c <= 7)
+            if (c <= 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -224,7 +231,7 @@ public class Organizer extends Application
             {
                 k = 2;
             }
-            else if( c > 7)
+            else if( c > 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {

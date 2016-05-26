@@ -86,95 +86,17 @@ public class Organizer extends Application
         DropShadow dpS = new DropShadow();
         dpS.setOffsetX(2.0);
         dpS.setOffsetY(0.5);
-
         
-        /*
-        Label[][] lb = new Label[65][14];
-        int k = 64;
-        int i = 1;
-        int count = 0;
+        bp.setTop(mb);
+        bp.setCenter(sp);
         
-        for (int c = 1; c < 14; c++)
-        {
-            if (c < 7)
-            {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
-                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n" 
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
-                    gp.setConstraints(lb[r][c], c, (2 * (i * r)));
-                    gp.getChildren().add(lb[r][c]);  
-                }
-                i++;
-                k = k / 2;
-                count += (k / 2);
-            }
-            else if(c == 7)
-            {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
-                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;\n"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
-                    gp.setConstraints(lb[r][c], c, (2 * (i + 1) * r));
-                    gp.getChildren().add(lb[r][c]);  
-                }
-                i = c;
-                k = k / 2;
-                if(k == 0)
-                {
-                    k = 2;
-                }
-            }
-            else if(c > 7)
-            {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c] = new Label("Col: " + c + "     " + "Row: " + r);
-                    lb[r][c].setTextFill(Color.web("#2F3131"));
-                    lb[r][c].setFont(new Font("Garamond", 8));
-                    lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
-                    //lb[r][c].setEffect(dpS);
-                    gp.setConstraints(lb[r][c], c, (2 * (i - 1) * r));
-                    gp.getChildren().add(lb[r][c]);
-                    
-                }
-                i--;
-                count -= (k / 2);
-                k = k * 2;
-            }
-        }
-        */
-            bp.setTop(mb);
-            bp.setCenter(sp);
-            
-            Group root = new Group();
-            Scene s = new Scene(bp, 1440, 900, Color.LIGHTCORAL);
-            
-            //Setting the stage
-            primary.setScene(s);
-            primary.setTitle("Tournament Bracket");
-            primary.show();
+        Group root = new Group();
+        Scene s = new Scene(bp, 1440, 900, Color.LIGHTCORAL);
+        
+        //Setting the stage
+        primary.setScene(s);
+        primary.setTitle("Tournament Bracket");
+        primary.show();
     }
     
     //MenuBar code
