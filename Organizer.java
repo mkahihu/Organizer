@@ -1,60 +1,55 @@
 /* Name: Cristopher Alvarado and Miller Kahihu
  * Date: 05/24/16
  * CS 406 Final Project - Organizer File
- */ 
+ */
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Orientation;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Group;
+//import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.paint.Color;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
-
+import java.lang.NumberFormatException;
 public class Organizer extends Application
 {
     MenuBar mb;
     GridPane gp;
-    List<List<String>> matchups;
+//    List<List<String>> matchups;
     Label[][] lb;
-    List<String> top64;
-    List<String> top32;
-    List<String> top16;
-    List<String> top8;
-    List<String> top4;
-    List<String> top2;
+    String[] top64;
+    String[] top32;
+    String[] top16;
+    String[] top8;
+    String[] top4;
+    String[] top2;
     String winner;
-    
+
     //Initialize Variables
     public void init()
     {
-        
+
         mb = new MenuBar(); //MenuBar
         gp = new GridPane(); //GridPane
         lb = new Label[33][12];
-        matchups = new ArrayList<List<String>>(); //For manual Bracket Input
+        top64 = new String[64];
+        top32 = new String[32];
+        top16 = new String[16];
+        top8 = new String[8];
+        top4 = new String[4];
+        top2 = new String[2];
+        winner = "noone";
+//        matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
    /* public void makeMatchUp(String p1, String p2)
     {
@@ -65,9 +60,9 @@ public class Organizer extends Application
     public void makeBracket()
     {
         matchups.add(makeMatchUp("Sachin", "Cris"));
-        
+
     } */
-                                                  
+
     //Start method
     @Override
     public void start(Stage primary)
@@ -79,62 +74,170 @@ public class Organizer extends Application
         gp.setStyle("-fx-background-color: #4897D8;");
         //Creates Menus
         createMenus();
-        
+
         //Create Labels & Label Code
         createLabels();
-        labelCode();
-    
+        //labelCode();
+
         ScrollPane sp = new ScrollPane(gp);
         sp.setFitToHeight(true);
-        
+
         BorderPane bp = new BorderPane(sp);
         bp.setPadding(new Insets(5));
-        
+
         DropShadow dpS = new DropShadow();
         dpS.setOffsetX(2.0);
         dpS.setOffsetY(0.5);
-        
+
         bp.setTop(mb);
         bp.setCenter(sp);
-        
-        Group root = new Group();
+
+//        Group root = new Group();
         Scene s = new Scene(bp, 1440, 900, Color.LIGHTCORAL);
-        
+
         //Setting the stage
         primary.setScene(s);
         primary.setTitle("Tournament Bracket");
         primary.show();
     }
-    
+
     //MenuBar code
     private void createMenus()
     {
         //File Menu
-        Menu fileMenu = new Menu("File");
-        
+        //Menu fileMenu = new Menu("File");
+
         //Ranking Menu
         Menu bracketMenu = new Menu("Bracket");
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
-            /*TextInputDialog dialogNumber = new TextInputDialog();
-             dialogNumber.setTitle("Text Input Dialog");
-             dialogNumber.setHeaderText("Look, a Text Input Dialog");
-             dialogNumber.setContentText("Please enter your name:");*/
-            String input = JOptionPane.showInputDialog(this  ,"Enter in some text:");
-            
+            try
+            {
+                int rowNum = Integer.valueOf(JOptionPane.showInputDialog("Input Row"));
+                int columnNum = Integer.valueOf(JOptionPane.showInputDialog("Input Column"));
+                String player = JOptionPane.showInputDialog("Input Player Name");
+                if(rowNum < 33 && rowNum > 0)
+                {
+                    if(columnNum == 1)
+                    {
+                        top64[rowNum-1] = player;
+                    }
+                    else if(columnNum == 11)
+                    {
+                        top64[rowNum-1+32] = player;
+                    }
+                }
+                if(rowNum < 17 && rowNum > 0)
+                {
+                    if(columnNum == 2)
+                    {
+                        top32[rowNum-1] = player;
+                    }
+                    else if(columnNum == 10)
+                    {
+                        top32[rowNum-1+16] = player;
+                    }
+                }
+                if(rowNum < 9 && rowNum > 0)
+                {
+                    if(columnNum == 3)
+                    {
+                        top16[rowNum-1] = player;
+                    }
+                    else if(columnNum == 9)
+                    {
+                        top16[rowNum-1+8] =  player;
+                    }
+                }
+                if(rowNum < 5 && rowNum > 0)
+                {
+                    if(columnNum == 4)
+                    {
+                        top8[rowNum-1] = player;
+                    }
+                    else if(columnNum == 8)
+                    {
+                        top8[rowNum-1+4] =  player;
+                    }
+                }
+                if(rowNum < 3 && rowNum > 0)
+                {
+                    if(columnNum == 5)
+                    {
+                        top4[rowNum-1] = player;
+                    }
+                    else if(columnNum == 7)
+                    {
+                        top4[rowNum-1+2] = player;
+                    }
+                }
+                if(rowNum == 1)
+                {
+                    if(columnNum == 6)
+                    {
+                        winner = player;
+                    }
+                }
+                else
+                {
+                    System.out.println("Rows are between 1-32 & Columns are between 1-12");
+                }
+                lb[rowNum][columnNum].setText(player);
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println("Please Input Integer Value");
+            }
+
         });
-        bracketMenu.getItems().addAll(addItem); 
-        mb.getMenus().addAll(fileMenu, bracketMenu);
+
+        MenuItem getTop64 = new MenuItem("Top 64");
+        getTop64.setOnAction( e -> {
+            System.out.println(arrayToList(top64));
+        });
+
+        MenuItem getTop32 = new MenuItem("Top 32");
+        getTop32.setOnAction( e -> {
+            System.out.println(arrayToList(top32));
+        });
+
+        MenuItem getTop16 = new MenuItem("Top 16");
+        getTop16.setOnAction( e -> {
+            System.out.println(arrayToList(top16));
+        });
+
+        MenuItem getTop8 = new MenuItem("Top 8");
+        getTop8.setOnAction( e -> {
+            System.out.println(arrayToList(top8));
+        });
+
+        MenuItem getTop4 = new MenuItem("Top 4");
+        getTop4.setOnAction( e -> {
+            System.out.println(arrayToList(top4));
+        });
+
+        MenuItem getTop2 = new MenuItem("Top 2");
+        getTop2.setOnAction( e -> {
+            System.out.println(arrayToList(top2));
+        });
+
+        MenuItem getWinner = new MenuItem("Winner");
+        getWinner.setOnAction( e -> {
+            System.out.println(winner);
+        });
+
+        bracketMenu.getItems().addAll(addItem, getTop64, getTop32, getTop16, getTop8, getTop4, getTop2, getWinner);
+        mb.getMenus().addAll( bracketMenu);
     }
-    
+
     private void createLabels()
     {
         //Create a Double Array of Labels (in form of a Tournament Bracket)
-        
+
         int k = 32;
         int i = 1;
         int count = 0;
-        
+
         for (int c = 1; c < 12; c++)
         {
             if (c < 6)
@@ -145,14 +248,14 @@ public class Organizer extends Application
                     lb[r][c].setTextFill(Color.web("#2F3131"));
                     lb[r][c].setFont(new Font("Garamond", 8));
                     lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
-                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n" 
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
+                    lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
+                            + "-fx-border-style: solid;\n"
+                            + "-fx-border-color: #BCBABE;"
+                            + "-fx-border-width: 2;\n"
+                            + "-fx-border-insets: 0.5;\n");
                     //lb[r][c].setEffect(dpS);
                     gp.setConstraints(lb[r][c], c, (2 * (i * r)));
-                    gp.getChildren().add(lb[r][c]);  
+                    gp.getChildren().add(lb[r][c]);
                 }
                 i++;
                 k = k / 2;
@@ -167,13 +270,13 @@ public class Organizer extends Application
                     lb[r][c].setFont(new Font("Garamond", 8));
                     lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
                     lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;\n"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
+                            + "-fx-border-style: solid;\n"
+                            + "-fx-border-color: #BCBABE;\n"
+                            + "-fx-border-width: 2;\n"
+                            + "-fx-border-insets: 0.5;\n");
                     //lb[r][c].setEffect(dpS);
                     gp.setConstraints(lb[r][c], c, (2 * (i + 1) * r));
-                    gp.getChildren().add(lb[r][c]);  
+                    gp.getChildren().add(lb[r][c]);
                 }
                 i = c;
                 k = k / 2;
@@ -191,14 +294,14 @@ public class Organizer extends Application
                     lb[r][c].setFont(new Font("Garamond", 8));
                     lb[r][c].setTextAlignment(TextAlignment.JUSTIFY);
                     lb[r][c].setStyle("-fx-background-color: #F8F1E5;\n"
-                                          + "-fx-border-style: solid;\n"
-                                          + "-fx-border-color: #BCBABE;"
-                                          + "-fx-border-width: 2;\n"
-                                          + "-fx-border-insets: 0.5;\n");
+                            + "-fx-border-style: solid;\n"
+                            + "-fx-border-color: #BCBABE;"
+                            + "-fx-border-width: 2;\n"
+                            + "-fx-border-insets: 0.5;\n");
                     //lb[r][c].setEffect(dpS);
                     gp.setConstraints(lb[r][c], c, (2 * (i - 1) * r));
                     gp.getChildren().add(lb[r][c]);
-                    
+
                 }
                 i--;
                 count -= (k / 2);
@@ -206,48 +309,17 @@ public class Organizer extends Application
             }
         }
     }
-    
-    //Label Actions
-    private void labelCode()
+
+    private String arrayToList(String[] list)
     {
-        int k = 32;
-        
-        for (int c = 1; c < 12; c++)
+        StringBuffer sb = new StringBuffer();
+        int count = 1;
+        for(int k = 0; k < list.length; k++)
         {
-            if (c <= 6)
-            {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c].setOnMouseClicked( e -> {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setContentText("This is an important message!");
-                        alert.showAndWait();
-          
-                    });
-                }
-                k = k/2;
-            }
-            if(k == 0)
-            {
-                k = 2;
-            }
-            else if( c > 6)
-            {
-                for (int r = 1; r < k+1; r++)
-                {
-                    lb[r][c].setOnMouseClicked( e -> {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setContentText("This is an important message!");
-                        alert.showAndWait();
-          
-                    });
-                }
-                k = k * 2;
-            }
+            sb.append("#" + count + " " + list[k] + "\n");
+            count++;
         }
-        
-        
-                    
+        return sb.toString();
     }
     //Main method
     public static void main(String[] args)
@@ -256,7 +328,7 @@ public class Organizer extends Application
     }
 }
 ///////////////////////////ALIEN METHOD////////////////////////////////////
-/*public class Player() 
+/*public class Player()
  {
  private Long id;
  private String name;
@@ -264,7 +336,7 @@ public class Organizer extends Application
  //getter setter
  }
  private Player rankItem()
- List<Player> participants = new ArrayList<Player>() 
+ List<Player> participants = new ArrayList<Player>()
  {
  {
  add(new Player(1L, "a", 5));

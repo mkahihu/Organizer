@@ -32,13 +32,20 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
-
+import java.lang.NumberFormatException;
 public class Organizer extends Application
 {
     MenuBar mb;
     GridPane gp;
     List<List<String>> matchups;
     Label[][] lb;
+    List<String> top64;
+    List<String> top32;
+    List<String> top16;
+    List<String> top8;
+    List<String> top4;
+    List<String> top2;
+    String winner;
     
     //Initialize Variables
     public void init()
@@ -46,7 +53,14 @@ public class Organizer extends Application
         
         mb = new MenuBar(); //MenuBar
         gp = new GridPane(); //GridPane
-        lb = new Label[65][14];
+        lb = new Label[33][12];
+        top64 = new ArrayList<String>(64);
+        top32 = new ArrayList<String>(32);
+        top16 = new ArrayList<String>(16);
+        top8 = new ArrayList<String>(8);
+        top4 = new ArrayList<String>(4);
+        top2 = new ArrayList<String>(2);
+        winner = "noone";
         matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
    /* public void makeMatchUp(String p1, String p2)
@@ -75,7 +89,7 @@ public class Organizer extends Application
         
         //Create Labels & Label Code
         createLabels();
-        labelCode();
+        //labelCode();
     
         ScrollPane sp = new ScrollPane(gp);
         sp.setFitToHeight(true);
@@ -109,11 +123,55 @@ public class Organizer extends Application
         Menu bracketMenu = new Menu("Bracket");
         MenuItem addItem = new MenuItem("Add...");
         addItem.setOnAction( e -> {
-            /*TextInputDialog dialogNumber = new TextInputDialog();
-             dialogNumber.setTitle("Text Input Dialog");
-             dialogNumber.setHeaderText("Look, a Text Input Dialog");
-             dialogNumber.setContentText("Please enter your name:");*/
-            String input = JOptionPane.showInputDialog(this  ,"Enter in some text:");
+            try
+            {
+                int rowNum = Integer.valueOf(JOptionPane.showInputDialog("Input Row"));
+                int columnNum = Integer.valueOf(JOptionPane.showInputDialog("Input Column"));
+                String player = JOptionPane.showInputDialog("Input Player Name");
+                if(rowNum < 33 && rowNum > 0)
+                {
+                    if(columnNum == 1)
+                    {
+                        top32.add(rowNum-1, player);
+                    }
+                    else if(columnNum == 11)
+                    {
+                        top32.add(rowNum-1, player);
+                    }
+                    else if(columnNum == 3)
+                    {
+                        top8.add(rowNum-1, player);
+                    }
+                    else if(columnNum == 4)
+                    {
+                        top4.add(rowNum-1, player);
+                    }
+                    else if(columnNum == 5)
+                    {
+                        top2.add(rowNum-1, player);
+                    }
+                    else if(columnNum == 6)
+                    {
+                        winner = player;
+                    }
+                    else if(columnNum == 7)
+                    {
+                        
+                    }
+                    else if(columnNum == 8)
+                    {
+                        top2.add(rowNum, player);
+                    }
+                }
+                else
+                {
+                    System.out.println("Rows are between 1-32 & Columns are between 1-12");
+                }
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println("Please Input Integer Value");
+            }
             
         });
         bracketMenu.getItems().addAll(addItem); 
@@ -124,13 +182,13 @@ public class Organizer extends Application
     {
         //Create a Double Array of Labels (in form of a Tournament Bracket)
         
-        int k = 64;
+        int k = 32;
         int i = 1;
         int count = 0;
         
-        for (int c = 1; c < 14; c++)
+        for (int c = 1; c < 12; c++)
         {
-            if (c < 7)
+            if (c < 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -151,7 +209,7 @@ public class Organizer extends Application
                 k = k / 2;
                 count += (k / 2);
             }
-            else if(c == 7)
+            else if(c == 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -175,7 +233,7 @@ public class Organizer extends Application
                     k = 2;
                 }
             }
-            else if(c > 7)
+            else if(c > 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -199,21 +257,24 @@ public class Organizer extends Application
             }
         }
     }
-    
+    /*
     //Label Actions
     private void labelCode()
     {
-        int k = 64;
-        
-        for (int c = 1; c < 14; c++)
+        int k = 32;
+        int col = 0;
+        int row = 0;
+        for (int c = 1; c < 12; c++)
         {
-            if (c <= 7)
+           
+            if (c <= 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
+                   
                     lb[r][c].setOnMouseClicked( e -> {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setContentText("This is an important message!");
+                        alert.setContentText("" + lb[r][c].getText());
                         alert.showAndWait();
           
                     });
@@ -224,7 +285,7 @@ public class Organizer extends Application
             {
                 k = 2;
             }
-            else if( c > 7)
+            else if( c > 6)
             {
                 for (int r = 1; r < k+1; r++)
                 {
@@ -238,10 +299,7 @@ public class Organizer extends Application
                 k = k * 2;
             }
         }
-        
-        
-                    
-    }
+        */
     //Main method
     public static void main(String[] args)
     {
