@@ -5,21 +5,22 @@
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 //import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.MenuBar;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 import javafx.scene.effect.DropShadow;
 import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.NumberFormatException;
 public class Organizer extends Application
 {
@@ -34,6 +35,7 @@ public class Organizer extends Application
     String[] top4;
     String[] top2;
     String winner;
+    private File file;
 
     //Initialize Variables
     public void init()
@@ -49,6 +51,7 @@ public class Organizer extends Application
         top4 = new String[4];
         top2 = new String[2];
         winner = "noone";
+        file = null;
 //        matchups = new ArrayList<List<String>>(); //For manual Bracket Input
     }
    /* public void makeMatchUp(String p1, String p2)
@@ -105,7 +108,95 @@ public class Organizer extends Application
     private void createMenus()
     {
         //File Menu
-        //Menu fileMenu = new Menu("File");
+        Menu fileMenu = new Menu("File");
+        MenuItem saveItem = new MenuItem("Save");
+        saveItem.setOnAction( e -> {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Save File");
+            file = fc.showSaveDialog(new Stage());
+            if(file != null)
+            {
+                try
+                {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                    int count = 1;
+                    writer.write("Top 64");
+                    for(String k: top64)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    count = 1;
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Top 32");
+                    for(String k: top32)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    count = 1;
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Top 16");
+                    for(String k: top16)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    count = 1;
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Top 8");
+                    for(String k: top8)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    count = 1;
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Top 4");
+                    for(String k: top4)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    count = 1;
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Top 2");
+                    for(String k: top2)
+                    {
+                        writer.newLine();
+                        writer.write("#" + count + " "+ k);
+                        count++;
+                    }
+                    writer.newLine();
+                    writer.newLine();
+                    writer.write("Winner");
+                    writer.newLine();
+                    writer.write(winner);
+                    writer.close();
+                }
+                catch(IOException ex)
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Something happened with saving");
+                    alert.showAndWait();
+                }
+            }
+
+        });
+
+        fileMenu.getItems().addAll(saveItem);
 
         //Ranking Menu
         Menu bracketMenu = new Menu("Bracket");
@@ -227,7 +318,9 @@ public class Organizer extends Application
         });
 
         bracketMenu.getItems().addAll(addItem, getTop64, getTop32, getTop16, getTop8, getTop4, getTop2, getWinner);
-        mb.getMenus().addAll( bracketMenu);
+
+
+        mb.getMenus().addAll(fileMenu, bracketMenu);
     }
 
     private void createLabels()
